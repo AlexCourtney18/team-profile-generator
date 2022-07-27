@@ -1,6 +1,6 @@
-const { validate } = require('@babel/types');
+// const { validate } = require('@babel/types');
 const inquirer = require('inquirer');
-const { choices } = require('yargs');
+// const { choices } = require('yargs');
 
 
 const promptUser = () => {
@@ -53,9 +53,9 @@ const promptUser = () => {
 };
 
 const promptEmployees = employeeData => {
-    if (!employeeData.info) {
-        employeeData.info = [];
-    }
+    // if (!employeeData.info) {
+    //     employeeData.info = [];
+    // }
     console.log(`
     ==================
     Add a New Employee
@@ -69,18 +69,21 @@ const promptEmployees = employeeData => {
             choices: ['Engineer', 'Intern', 'Finish'],
             
         },
-        console.log(employeeType.choices, "CHOICES!")
     ])
         .then(employeeType => {
-            if (employeeType.choices === Engineer) {
+            console.log(employeeType.addEmployee, "CHOICES!")
+            if (employeeType.addEmployee === 'Engineer') {
                 return promptEngineer(employeeData);
-            } else if (employeeType.choices === 'Intern') {
+            } else if (employeeType.addEmployee === 'Intern') {
                 return promptIntern(employeeData);
             } else return employeeData;
         }); 
 };
 
-const promptEngineer = () => {
+const promptEngineer = (engineerData) => {
+    if (!engineerData.info) {
+        engineerData.info = [];
+    }
     return inquirer.prompt([
         {
             type: 'input',
@@ -118,16 +121,94 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'engineerGithub',
-            message: "Please enter the team engineer's GitHub username. (Required)",
+            message: "Please enter the engineer's GitHub username. (Required)",
             validate: engineerGithubInput => {
                 if (engineerGithubInput) {
                     return true;
-                } else console.log("Please enter the team engineer's GitHub username.");
+                } else console.log("Please enter the engineer's GitHub username.");
                     return false;
             }
         },
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to enter another employee?',
+            default: false
+        } 
     ])
-}
+        .then(employeeData => {
+            if (employeeData.confirmAddEmployee) {
+                return promptEmployees(employeeData);
+            } else {
+                return employeeData;
+            }
+        });
+};
+
+const promptIntern = (internData) => {
+    if (!internData.info) {
+        internData.info = [];
+    }
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'internName',
+            message: "Please enter the intern's name. (Required)",
+            validate: internNameInput => {
+                if (internNameInput) {
+                    return true;
+                } else console.log("Please enter the intern's name.");
+                    return false;
+            }
+        },
+        {
+            type: 'input',
+            name: 'internID',
+            message: "Please enter the intern's employee ID. (Required)",
+            validate: internIDInput => {
+                if (internIDInput) {
+                    return true;
+                } else console.log("Please enter the intern's employee ID.");
+                    return false;
+            }
+        },
+        {
+            type: 'input',
+            name: 'internEmail',
+            message: "Please enter the intern's email address. (Required)",
+            validate: internEmailInput => {
+                if (internEmailInput) {
+                    return true;
+                } else console.log("Please enter the intern's email address.");
+                    return false;
+            }
+        },
+        {
+            type: 'input',
+            name: 'internSchool',
+            message: "Please enter the intern's School. (Required)",
+            validate: internSchoolInput => {
+                if (internSchoolInput) {
+                    return true;
+                } else console.log("Please enter the intern's School.");
+                    return false;
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAddEmployee',
+            message: 'Would you like to enter another employee?',
+            default: false
+        } 
+    ])
+        .then(employeeData => {
+            if (employeeData.confirmAddEmployee) {
+                return promptEmployees(employeeData);
+            } else {
+                return employeeData;
+            }
+        });
+};
 
 promptUser()
     .then(promptEmployees)
