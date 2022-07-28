@@ -57,6 +57,7 @@ const promptUser = () => {
     .then((answers) => {
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
         employeeData.push(manager);
+        console.log(employeeData);
         });
 };
 
@@ -141,18 +142,16 @@ const promptEngineer = () => {
         .then(engineerData => {
             const engineer = new Engineer(engineerData.engineerName, engineerData.engineerID, engineerData.engineerEmail, engineerData.engineerGithub);
             employeeData.push(engineer);
+            console.log(employeeData);
             if (engineerData.confirmAddEmployee) {
                 return promptEmployees();
             } else {
-                return passToPageTemplate();
+                //return passToPageTemplate();
             }
         });
 };
 
-const promptIntern = (internData) => {
-    if (!internData.info) {
-        internData.info = [];
-    }
+const promptIntern = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -206,12 +205,13 @@ const promptIntern = (internData) => {
         } 
     ])
         .then(internData => {
-            const intern = new Intern(engineerData.engineerName, engineerData.engineerID, engineerData.engineerEmail, engineerData.engineerGithub);
-            employeeData.push(engineer);
+            const intern = new Intern(internData.internName, internData.internID, internData.internEmail, internData.internSchool);
+            employeeData.push(intern);
+            console.log(employeeData);
             if (internData.confirmAddEmployee) {
                 return promptEmployees();
             } else {
-                return passToPageTemplate();
+                //return passToPageTemplate();
             }
         });
 };
