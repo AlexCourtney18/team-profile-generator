@@ -50,7 +50,10 @@ const promptUser = () => {
                     return false;
             }
         },
-    ]);
+    ])
+    .then(({ name }) => {
+            this.manager = new Manager(name);
+        });
 };
 
 const promptEmployees = employeeData => {
