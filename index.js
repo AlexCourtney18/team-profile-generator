@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+const passToPage = require('./src/page-template')
+const employeeData = [];
 
 
 const promptUser = () => {
@@ -51,15 +53,14 @@ const promptUser = () => {
             }
         },
     ])
-    .then(({ name }) => {
-            this.manager = new Manager(name);
+
+    .then((answers) => {
+        const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
+        employeeData.push(manager);
         });
 };
 
 const promptEmployees = employeeData => {
-    // if (!employeeData.info) {
-    //     employeeData.info = [];
-    // }
     console.log(`
     ==================
     Add a New Employee
@@ -84,10 +85,7 @@ const promptEmployees = employeeData => {
         }); 
 };
 
-const promptEngineer = (engineerData) => {
-    if (!engineerData.info) {
-        engineerData.info = [];
-    }
+const promptEngineer = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -140,11 +138,13 @@ const promptEngineer = (engineerData) => {
             default: false
         } 
     ])
-        .then(employeeData => {
-            if (employeeData.confirmAddEmployee) {
-                return promptEmployees(employeeData);
+        .then(engineerData => {
+            const engineer = new Engineer(engineerData.engineerName, engineerData.engineerID, engineerData.engineerEmail, engineerData.engineerGithub);
+            employeeData.push(engineer);
+            if (engineerData.confirmAddEmployee) {
+                return promptEmployees();
             } else {
-                return employeeData;
+                return passToPageTemplate();
             }
         });
 };
@@ -205,14 +205,18 @@ const promptIntern = (internData) => {
             default: false
         } 
     ])
-        .then(employeeData => {
-            if (employeeData.confirmAddEmployee) {
-                return promptEmployees(employeeData);
+        .then(internData => {
+            const intern = new Intern(engineerData.engineerName, engineerData.engineerID, engineerData.engineerEmail, engineerData.engineerGithub);
+            employeeData.push(engineer);
+            if (internData.confirmAddEmployee) {
+                return promptEmployees();
             } else {
-                return employeeData;
+                return passToPageTemplate();
             }
         });
 };
 
 promptUser()
     .then(promptEmployees)
+
+// passToPage(employeeData)
