@@ -59,6 +59,7 @@ const promptUser = () => {
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
         employeeData.push(manager);
         console.log(employeeData);
+        return employeeData;
         });
 };
 

@@ -1,6 +1,6 @@
-const generateManager = manager => {
+const generateManager = managerText => {
     return `
-    <p>${manager}</p>
+    <p>${managerText}</p>
     `;
 };
 
@@ -35,9 +35,9 @@ const generateManager = manager => {
 //     // <main>
 // }
 
-module.exports = employeeInfo => {
+module.exports = employeeData => {
 
-    let { manager, engineer, intern } = employeeInfo;
+    //let { name, engineer, intern } = employeeInfo;
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -54,7 +54,7 @@ module.exports = employeeInfo => {
             <h1>Employee Contact Sheet</h1>
         </header>
             <main>
-                ${generateManager(manager)}
+                ${generateManager(employeeData)}
                 <p>Test</p>
                 <p>Test</p>
             </main>
