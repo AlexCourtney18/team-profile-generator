@@ -1,8 +1,9 @@
+const { writeFile, copyFile } = require('./generate-site');
 const inquirer = require('inquirer');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const passToPage = require('./src/page-template')
+const generatePage = require('./src/page-template');
 const employeeData = [];
 
 
@@ -218,5 +219,12 @@ const promptIntern = () => {
 
 promptUser()
     .then(promptEmployees)
+    .then(employeeData => {
+        return generatePage(employeeData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(copyFile);
 
 // passToPage(employeeData)
