@@ -1,6 +1,14 @@
 const generateManager = managerText => {
     return `
-    <p>${managerText}</p>
+    ${managerText.map(({ name, id, email, role, officeNumber }) => {
+        return `
+        <p>${name}</p>
+        <p>${id}</p>
+        <p>${email}</p>
+        <p>${role}</p>
+        <p>${officeNumber}</p>
+        `
+    })}
     `;
 };
 
