@@ -147,6 +147,7 @@ const promptEngineer = () => {
             if (engineerData.confirmAddEmployee) {
                 return promptEmployees();
             } else {
+                return employeeData;
                 //return passToPageTemplate();
             }
         });
@@ -212,6 +213,7 @@ const promptIntern = () => {
             if (internData.confirmAddEmployee) {
                 return promptEmployees();
             } else {
+                return employeeData;
                 //return passToPageTemplate();
             }
         });

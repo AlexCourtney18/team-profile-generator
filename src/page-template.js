@@ -1,31 +1,43 @@
 const generateManager = manager => {
     return `
-    <p>${manager.name}
-    `
+    <p>${manager}</p>
+    `;
 };
 
-const generateEngineer = engineer => {
-    return `
-    <p>${engineer.name}
-    `
-};
+// const generateEngineer = engineer => {
+//     return `
+//     <p>${engineer.name}
+//     `
+// };
 
-const generateIntern = intern => {
-    return `
-    <p>${intern.name}
-    `
-};
+// const generateIntern = intern => {
+//     return `
+//     <p>${intern.name}
+//     `
+// };
 
-// const passToPage = (employeeData) => {
-//     // return `
+// const passToPage = employeeData => {
+//     return `
+//     ${employeeData.map(({ managerName, managerID, managerEmail, managerOffice }) => {
+//         return `
+//         <p>${managerName}</p>
+//         <p>${managerID}</p>
+//         <p>${managerEmail}</p>
+//         <p>${managerOffice}</p>
+//         `;
+//     })
+// }
+
+//     `
 //     // a bunch of html
 //     // <main>
 //     // ${returnCards(employeeData)}
 //     // <main>
-//     // `
 // }
 
-module.exports = () => {
+module.exports = employeeInfo => {
+
+    let { manager, engineer, intern } = employeeInfo;
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -39,10 +51,10 @@ module.exports = () => {
 
     <body>
         <header>
-            <h1>Title</h1>
+            <h1>Employee Contact Sheet</h1>
         </header>
             <main>
-                <p>Test</p>
+                ${generateManager(manager)}
                 <p>Test</p>
                 <p>Test</p>
             </main>
