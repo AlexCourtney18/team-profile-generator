@@ -12,11 +12,19 @@ const generateManager = managerText => {
     `;
 };
 
-// const generateEngineer = engineer => {
-//     return `
-//     <p>${engineer.name}
-//     `
-// };
+const generateEngineer = engineerText => {
+    return `
+    ${engineerText.map(({ name, id, email, role, github }) => {
+        return `
+        <p>${name}</p>
+        <p>${id}</p>
+        <p>${email}</p>
+        <p>${role}</p>
+        <p>${github}</p>
+        `
+    })}
+    `;
+};
 
 // const generateIntern = intern => {
 //     return `
@@ -45,7 +53,6 @@ const generateManager = managerText => {
 
 module.exports = employeeData => {
 
-    //let { name, engineer, intern } = employeeInfo;
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -63,6 +70,7 @@ module.exports = employeeData => {
         </header>
             <main>
                 ${generateManager(employeeData)}
+                ${generateEngineer(employeeData)}
                 <p>Test</p>
                 <p>Test</p>
             </main>
