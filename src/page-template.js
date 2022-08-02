@@ -95,7 +95,7 @@ module.exports = employeeData => {
 
     <body>
         <header>
-            <h1>Employee Contact Sheet</h1>
+            <h1 class="text-center">Employee Contact Sheet</h1>
         </header>
             <main>
                 <div class="jumbtotron jumbotron-fluid">
