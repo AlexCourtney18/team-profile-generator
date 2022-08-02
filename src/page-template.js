@@ -107,11 +107,7 @@ module.exports = employeeData => {
                 
                 ${generateIntern(employeeData)}
                 
-                <p>Test</p>
-                <p>Test</p>
             </main>
-            <footer>
-            </footer>
     </body>
     </html>
 
