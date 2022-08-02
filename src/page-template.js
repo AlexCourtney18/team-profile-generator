@@ -1,6 +1,8 @@
-const generateManager = managerText => {
+const generateManager = managerArr => {
     return `
-    ${managerText.map(({ name, id, email, role, officeNumber }) => {
+    ${managerArr
+        .filter(({ officeNumber }) => officeNumber)
+        .map(({ name, id, email, role, officeNumber }) => {
         return `
         <p>${name}</p>
         <p>${id}</p>
@@ -14,7 +16,9 @@ const generateManager = managerText => {
 
 const generateEngineer = engineerText => {
     return `
-    ${engineerText.map(({ name, id, email, role, github }) => {
+    ${engineerText
+        .filter(({ github }) => github)
+        .map(({ name, id, email, role, github }) => {
         return `
         <p>${name}</p>
         <p>${id}</p>
@@ -26,11 +30,21 @@ const generateEngineer = engineerText => {
     `;
 };
 
-// const generateIntern = intern => {
-//     return `
-//     <p>${intern.name}
-//     `
-// };
+const generateIntern = internText => {
+    return `
+    ${internText
+        .filter(({ school }) => school)
+        .map(({ name, id, email, role, school }) => {
+        return `
+        <p>${name}</p>
+        <p>${id}</p>
+        <p>${email}</p>
+        <p>${role}</p>
+        <p>${school}</p>
+        `
+    })}
+    `;
+};
 
 // const passToPage = employeeData => {
 //     return `
@@ -71,6 +85,8 @@ module.exports = employeeData => {
             <main>
                 ${generateManager(employeeData)}
                 ${generateEngineer(employeeData)}
+                ${generateIntern(employeeData)}
+                
                 <p>Test</p>
                 <p>Test</p>
             </main>
