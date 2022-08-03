@@ -60,25 +60,6 @@ const generateIntern = internText => {
     `;
 };
 
-// const passToPage = employeeData => {
-//     return `
-//     ${employeeData.map(({ managerName, managerID, managerEmail, managerOffice }) => {
-//         return `
-//         <p>${managerName}</p>
-//         <p>${managerID}</p>
-//         <p>${managerEmail}</p>
-//         <p>${managerOffice}</p>
-//         `;
-//     })
-// }
-
-//     `
-//     // a bunch of html
-//     // <main>
-//     // ${returnCards(employeeData)}
-//     // <main>
-// }
-
 module.exports = employeeData => {
 
     return `

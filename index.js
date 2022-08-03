@@ -149,7 +149,6 @@ const promptEngineer = () => {
                 return promptEmployees();
             } else {
                 return employeeData;
-                //return passToPageTemplate();
             }
         });
 };
@@ -215,7 +214,6 @@ const promptIntern = () => {
                 return promptEmployees();
             } else {
                 return employeeData;
-                //return passToPageTemplate();
             }
         });
 };
@@ -229,5 +227,3 @@ promptUser()
         return writeFile(pageHTML);
     })
     .then(copyFile);
-
-// passToPage(employeeData)
