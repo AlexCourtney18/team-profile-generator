@@ -1,4 +1,4 @@
-const { writeFile, copyFile } = require('./generate-site');
+const { writeFile } = require('./generate-site');
 const inquirer = require('inquirer');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -226,4 +226,3 @@ promptUser()
     .then(pageHTML => {
         return writeFile(pageHTML);
     })
-    .then(copyFile);
